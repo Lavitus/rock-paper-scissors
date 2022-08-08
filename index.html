@@ -10,6 +10,15 @@
 
     </body>
     <script>
+        let gameChoices = ["Rock", "Paper", "Scissors"];
+        let computerSelection = randomChoice;
+        // computer randomly selects Rock, Paper or Scissors
+        function getComputerChoice() { 
+        let randomChoice = gameChoices[Math.floor(Math.random() * gameChoices.length)];
+        alert(randomChoice);
+        }
+        // player text input returns choice for the game
+        let playerSelection = playerInput;
         
     </script>
 </html>
