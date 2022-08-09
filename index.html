@@ -10,15 +10,39 @@
 
     </body>
     <script>
-        let gameChoices = ["Rock", "Paper", "Scissors"];
-        let computerSelection = randomChoice;
-        // computer randomly selects Rock, Paper or Scissors
+        let gameChoices = ["Rock", "Paper", "Scissor"];
+        let computerChoice = null;
+        let playerChoice = null;
+        // computer randomly selects move
+        getComputerChoice();
         function getComputerChoice() { 
-        let randomChoice = gameChoices[Math.floor(Math.random() * gameChoices.length)];
-        alert(randomChoice);
+        computerChoice = gameChoices[Math.floor(Math.random() * gameChoices.length)];
         }
-        // player text input returns choice for the game
-        let playerSelection = playerInput;
-        
+
+        game(); 
+        function game () {
+            // ask player for text input for move choice to start the round  
+            playerChoice = prompt("Choose your move! Rock, Paper or Scissor?");
+            if (typeof playerChoice === 'string') playerChoice.charAt(0).toUpperCase() +playerChoice.slice(1).toLowerCase();
+            // if no input or player cancels, prompt again
+            if (playerChoice === null) {
+                game();
+            } else if (playerChoice.length === 0 ) {
+                game()
+            } // start round if player made choice 
+            else if (playerChoice === "Rock" || 
+                     playerChoice === "Paper"||
+                     playerChoice === "Scissor") {
+                playRound();
+            } else { 
+                game();
+            }
+        }
+
+        function playRound() {
+                if (playerChoice.toLowerCase === computerChoice.toLowerCase) {
+                    alert(`You chose ${playerChoice} vs ${computerChoice}, that's Draw!`);
+                }
+            }
     </script>
 </html>

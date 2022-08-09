@@ -1,2 +1,2 @@
-# Rock-Paper-Scissors
-Game 
+# Prompt Rock-Paper-Scissor
+Simple javascript prompt game
