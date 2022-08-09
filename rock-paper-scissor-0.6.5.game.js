@@ -12,8 +12,7 @@ function game () {
     // ask player for text input for move choice to start the round  
     playerChoice = prompt("Choose your move! Rock, Paper or Scissor?", "");
     if (typeof playerChoice === 'string') {
-        playerChoice.charAt(0).toUpperCase() 
-        +playerChoice.slice(1).toLowerCase();
+    playerChoice = playerChoice.charAt(0).toUpperCase() +playerChoice.slice(1).toLowerCase();
     }
     // if no input or player cancels, prompt again
     if (playerChoice === null) {
