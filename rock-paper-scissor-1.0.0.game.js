@@ -47,15 +47,15 @@ function runRPSGame() {
             
             // tie, when both chose the same move
             if (playerChoice.value === computerChoice.value) {
-                alert(`Tie! You both chose ${playerChoice.choice}, ${currentRound}:  Player ${playerScore} - ${computerScore} Computer`);
+                alert(`Tie! You both chose ${playerChoice.choice}\n${currentRound}:  Player ${playerScore} - ${computerScore} Computer`);
             } // check if player met conditions for winning a round & if true, give 1 point to player
             else if (playerWinCombo.includes(roundWinCombo)) {
                 playerScore++;
-                alert(`You win! ${playerChoice.choice} beats ${computerChoice.choice}, ${currentRound}:  Player ${playerScore} - ${computerScore} Computer`);
+                alert(`You win! ${playerChoice.choice} beats ${computerChoice.choice}\n${currentRound}:  Player ${playerScore} - ${computerScore} Computer`);
             } // if conditions not met, player loses the round & give 1 point to computer
             else {
                 computerScore++;
-                alert(`You lose! ${computerChoice.choice} beats ${playerChoice.choice}, ${currentRound}:  Player ${playerScore} - ${computerScore} Computer`);
+                alert(`You lose! ${computerChoice.choice} beats ${playerChoice.choice}\n${currentRound}:  Player ${playerScore} - ${computerScore} Computer`);
             }
         }
     }
