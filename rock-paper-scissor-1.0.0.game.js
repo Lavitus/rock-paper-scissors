@@ -59,4 +59,11 @@ function runRPSGame() {
             }
         }
     }
+    if (playerScore > computerScore) {
+        alert(`You've won the game! GG! End Score: ${playerScore} - ${computerScore}`)
+    } else if (playerScore < computerScore) {
+        alert(`You've lost the game! GG! End Score: ${playerScore} - ${computerScore}`)
+    } else {
+        alert(`It's a tie! GG! End Score: ${playerScore} - ${computerScore}`)
+    }
 }
