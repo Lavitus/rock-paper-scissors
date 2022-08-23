@@ -1,3 +1,6 @@
+let playerScore = 0;
+let computerScore = 0;
+
 // rock paper scissors move options
 const gameMoveOptions = [{choice: 'Rock', value: 0}, {choice: 'Paper', value: 1}, {choice: 'Scissors', value: 2}];
 
@@ -31,12 +34,17 @@ function playRound (playerChoice, computerChoice) {
     if (playerChoice.value === computerChoice.value) {
         alert(`Tie! You both chose ${playerChoice.choice}`);
         game();
-    } // check if player met conditions for winning a round 
+    } // check if player met conditions for winning a round & if true, check if score met condition to win the game
     else if (playerWinCombo.includes(roundWinCombo)) {
-        alert(`You win! ${playerChoice.choice} beats ${computerChoice.choice}`)
-    } // if conditions not met, player loses the round
+        alert(`You win! ${playerChoice.choice} beats ${computerChoice.choice}`);
+        playerScore++;
+        checkScore
+    } // if conditions not met, player loses the round & if true, check if score met condition to win the game
     else {
-        alert(`You lose! ${computerChoice.choice} beats ${playerChoice.choice}`)}
+        alert(`You lose! ${computerChoice.choice} beats ${playerChoice.choice}`);
+        computerScore++;
+    }
+
 }
 
 // computer selecting random move
