@@ -14,7 +14,9 @@ function getComputerChoice() {
 runRPSGame();
 function runRPSGame() {
     // play 5 rounds
-    for (let r = 1;r < 6; r++) {
+    r = 1;
+    
+    while (r <= 5) {
         // start round
         game();
         function game() {
@@ -58,7 +60,10 @@ function runRPSGame() {
                 alert(`You lose! ${computerChoice.choice} beats ${playerChoice.choice}\n${currentRound}:  Player ${playerScore} - ${computerScore} Computer`);
             }
         }
+        // round counter up, back to loop check.
+        r++;
     }
+    
     if (playerScore > computerScore) {
         alert(`You've won the game! GG! End Score: ${playerScore} - ${computerScore}`)
     } else if (playerScore < computerScore) {
