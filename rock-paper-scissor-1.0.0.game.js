@@ -13,12 +13,6 @@ function getComputerChoice() {
 //start game
 runRPSGame();
 function runRPSGame() {
-    // play 5 rounds
-    r = 1;
-    
-    while (r <= 5) {
-        // start round
-        game();
         function game() {
             // ask player to make a choice through text input
                 playerChoice = prompt("Choose your move! Rock, Paper or Scissors?", "");
@@ -60,8 +54,6 @@ function runRPSGame() {
                 alert(`You lose! ${computerChoice.choice} beats ${playerChoice.choice}\n${currentRound}:  Player ${playerScore} - ${computerScore} Computer`);
             }
         }
-        // round counter up, back to loop check.
-        r++;
     }
     
     if (playerScore > computerScore) {
