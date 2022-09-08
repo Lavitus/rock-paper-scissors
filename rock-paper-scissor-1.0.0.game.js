@@ -1,8 +1,14 @@
+let style = document.createElement('style');
+document.head.appendChild(style);
+
+// score
 let playerScore = 0;
 let computerScore = 0;
 
 // rock paper scissors move options
 const gameMoveOptions = [{choice: 'Rock', value: 0}, {choice: 'Paper', value: 1}, {choice: 'Scissors', value: 2}];
+// conditions for player winning a round
+let playerWinCombo = ['0-2', '1-0', '2-1'];
 
 // computer selecting random move whenever function is called
 function getComputerChoice() {
@@ -10,57 +16,99 @@ function getComputerChoice() {
     return computerChoiceResult;
 }
 
-//start game
-runRPSGame();
-function runRPSGame() {
-        function game() {
-            // ask player to make a choice through text input
-                playerChoice = prompt("Choose your move! Rock, Paper or Scissors?", "");
-            
-            // if player cancels, ask again, else adjust text cases from player input for the next check 
-            if (playerChoice === null) {game();} 
-            else { playerChoice = playerChoice.charAt(0).toUpperCase() + playerChoice.slice(1).toLowerCase();}
-            
-            // check if player made choice out of the options,if yes continue the round
-            if (gameMoveOptions.findIndex(move => move.choice === playerChoice)!== -1){ 
-                playerChoice = gameMoveOptions.findIndex(move => move.choice === playerChoice);
-                playerChoice = gameMoveOptions[playerChoice];
-                playRound(playerChoice, getComputerChoice());
-            } // ask again if player input was incorret  
-            else { game();}
-        }
+let gameFrame = document.getElementById("gameFrame");
+let choicesBox = document.getElementById("gameChoices");
 
-        function playRound (playerChoice, computerChoice) {
-            // conditions for player winning a round
-            let roundWinCombo = `${playerChoice.value}-${computerChoice.value}`;
-            let playerWinCombo = ['0-2', '1-0', '2-1'];
-            // current round text & if last round text
-            let currentRound = `Round ${r}`;
-            
-            if (r === 5) {
-                currentRound = `Last Round ${r}` 
-            }
-            
-            // tie, when both chose the same move
-            if (playerChoice.value === computerChoice.value) {
-                alert(`Tie! You both chose ${playerChoice.choice}\n${currentRound}:  Player ${playerScore} - ${computerScore} Computer`);
-            } // check if player met conditions for winning a round & if true, give 1 point to player
-            else if (playerWinCombo.includes(roundWinCombo)) {
-                playerScore++;
-                alert(`You win! ${playerChoice.choice} beats ${computerChoice.choice}\n${currentRound}:  Player ${playerScore} - ${computerScore} Computer`);
-            } // if conditions not met, player loses the round & give 1 point to computer
-            else {
-                computerScore++;
-                alert(`You lose! ${computerChoice.choice} beats ${playerChoice.choice}\n${currentRound}:  Player ${playerScore} - ${computerScore} Computer`);
-            }
+//= button game choice options, also starts the round/game =//
+gChoiceRock = document.getElementById("Rock");
+gChoiceRock.addEventListener("click", 
+    function() {  
+        runRPSGame("Rock");
+    }
+); //= =========================================== =//
+gChoicePaper = document.getElementById("Paper");
+gChoicePaper.addEventListener("click", 
+    function() {   
+        runRPSGame("Paper");
+    }
+); //= =========================================== =//
+gChoiceScissors = document.getElementById("Scissors");
+gChoiceScissors.addEventListener("click", 
+function() {   
+    runRPSGame("Scissors");
+    }
+); //= =========================================== =//
+
+// game result text 
+let gResultText = document.createElement("div");
+gResultText.setAttribute("id", "resultText");
+
+gameFrame.appendChild(gResultText);
+
+//starts round/game
+function runRPSGame(playerChoice) {
+    valiGChoices();
+    // validate choices
+    function valiGChoices() { 
+            playerChoice = gameMoveOptions.findIndex(move => move.choice === playerChoice);
+            playerChoice = gameMoveOptions[playerChoice];
+            return playRound(playerChoice, getComputerChoice());
+    }
+
+    function playRound (playerChoice, computerChoice) {
+        // get choice value for comparison & validation
+        let roundWinCombo = `${playerChoice.value}-${computerChoice.value}`;
+
+        // tie, when both chose the same move
+        if (playerChoice.value === computerChoice.value) {
+            gResultText.setAttribute("id", "resultTie")
+            gResultText.textContent = `Tie! You both chose ${playerChoice.choice}\n Current Score: Player ${playerScore} - ${computerScore} Computer`;
+        } // check if player met conditions for winning a round & if true, give 1 point to player
+        else if (playerWinCombo.includes(roundWinCombo)) {
+            playerScore++;
+            gResultText.setAttribute("id", "resultWin")
+            gResultText.textContent = (`You win! ${playerChoice.choice} beats ${computerChoice.choice}\n Current Score: Player ${playerScore} - ${computerScore} Computer`);
+        } // if conditions not met, player loses the round & give 1 point to computer
+        else {
+            computerScore++;
+            gResultText.setAttribute("id", "resultLost")
+            gResultText.textContent = (`You lose! ${computerChoice.choice} beats ${playerChoice.choice}\n Current Score: Player ${playerScore} - ${computerScore} Computer`);
         }
     }
-    
-    if (playerScore > computerScore) {
-        alert(`You've won the game! GG! End Score: ${playerScore} - ${computerScore}`)
-    } else if (playerScore < computerScore) {
-        alert(`You've lost the game! GG! End Score: ${playerScore} - ${computerScore}`)
-    } else {
-        alert(`It's a tie! GG! End Score: ${playerScore} - ${computerScore}`)
+    // 5 points end the game and announces the winner
+    if (playerScore >= 5 || computerScore >= 5) {
+        
+        document.querySelectorAll(".gChoice").forEach( element => { element.toggleAttribute("disabled") });
+        resetGame = document.createElement("button");
+        resetGame.setAttribute("id", "reset");
+
+        if (playerScore > computerScore) {
+            style.innerHTML += `
+            #resultText {
+            background-color: green;
+            }
+            `;
+            gResultText.textContent = (`You've won the game! GG! End Score: ${playerScore} - ${computerScore}`);
+        } else if (playerScore < computerScore) {
+            style.innerHTML += `
+            #resultText {
+            background-color: red;
+            }
+            `;
+            gResultText.textContent = (`You've lost the game! GG! End Score: ${playerScore} - ${computerScore}`);
+        }
+
+        style.innerHTML += `
+        #reset {
+        background-color: blueviolet;
+        color: white;
+        width: 70px;
+        max-width: 13vw;
+        margin-top: 2vh;
+        }
+        `;
+        resetGame.textContent = ("Reset Game");
+        resetGame.addEventListener("click", function () { location.reload() });
+        gameFrame.appendChild(resetGame);
     }
 }
