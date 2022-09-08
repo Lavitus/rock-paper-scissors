@@ -62,17 +62,17 @@ function runRPSGame(playerChoice) {
         // tie, when both chose the same move
         if (playerChoice.value === computerChoice.value) {
             gResultText.setAttribute("id", "resultTie")
-            gResultText.textContent = `Tie! You both chose ${playerChoice.choice}\n Current Score: Player ${playerScore} - ${computerScore} Computer`;
+            gResultText.textContent = `Tie! You both chose ${playerChoice.choice}\n | Current Score: Player ${playerScore} - ${computerScore} Computer`;
         } // check if player met conditions for winning a round & if true, give 1 point to player
         else if (playerWinCombo.includes(roundWinCombo)) {
             playerScore++;
             gResultText.setAttribute("id", "resultWin")
-            gResultText.textContent = (`You win! ${playerChoice.choice} beats ${computerChoice.choice}\n Current Score: Player ${playerScore} - ${computerScore} Computer`);
+            gResultText.textContent = (`You win! ${playerChoice.choice} beats ${computerChoice.choice}\n | Current Score: Player ${playerScore} - ${computerScore} Computer`);
         } // if conditions not met, player loses the round & give 1 point to computer
         else {
             computerScore++;
             gResultText.setAttribute("id", "resultLost")
-            gResultText.textContent = (`You lose! ${computerChoice.choice} beats ${playerChoice.choice}\n Current Score: Player ${playerScore} - ${computerScore} Computer`);
+            gResultText.textContent = (`You lose! ${computerChoice.choice} beats ${playerChoice.choice}\n | Current Score: Player ${playerScore} - ${computerScore} Computer`);
         }
     }
     // 5 points end the game and announces the winner
@@ -88,14 +88,14 @@ function runRPSGame(playerChoice) {
             background-color: green;
             }
             `;
-            gResultText.textContent = (`You've won the game! GG! End Score: ${playerScore} - ${computerScore}`);
+            gResultText.textContent = (`You've won the game! | GG! End Score: ${playerScore} - ${computerScore}`);
         } else if (playerScore < computerScore) {
             style.innerHTML += `
             #resultText {
             background-color: red;
             }
             `;
-            gResultText.textContent = (`You've lost the game! GG! End Score: ${playerScore} - ${computerScore}`);
+            gResultText.textContent = (`You've lost the game! GG! | End Score: ${playerScore} - ${computerScore}`);
         }
 
         style.innerHTML += `
