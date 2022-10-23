@@ -1,5 +1,7 @@
 body {
-    background-color: grey;
+    background-color: #353e50;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
 }
 
 div#gameFrame {
@@ -7,17 +9,28 @@ div#gameFrame {
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    /* height: 90vh; */
+    /* position: relative; */
 }
 
 div#gameChoices {
     display: flex;
     justify-content: center;
-    gap: 4vw;
+    gap: 5vw;
+    margin-bottom: 12vh;
+    margin-top: 5vh;
 }
 
 button.gChoice {
-    width: 70px;
-    max-width: 13vw;
+    width: 25vw;
+    /* max-width: 13vw; */
+    height: 25vw;
+    border-radius: 15vw;
+    border: 0.4vw solid white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform .2s;
 }
 
 button#Rock.gChoice {
@@ -32,14 +45,24 @@ button#Scissors.gChoice {
     background-color: rgb(239, 241, 115);
 }
 
+button.gChoice:hover {
+    border-color: black;  
+    transform: scale(1.1);
+}
 
 #resultLost, #resultWin, #resultTie {
+    height: 5vw;
     text-align: center;
-    margin-top: 2vh;
-    background-color: rgb(207, 207, 207);   
+    background-color: #99a3ad;
     display: flex;
-    flex-direction: column;    
-    align-self: stretch;
+    border-radius: 100vw;
+    font-size: 2.3vw;
+    width: 75vw;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2vw;
+    border: 5px solid white;
+    text-shadow: -1px 1px 4px #969696;
 }
 
 #resultLost {
@@ -47,9 +70,30 @@ button#Scissors.gChoice {
 }
 
 #resultWin {
-    color: green;
+    color: #79f500;
  }
 
 #resultTie {
     color: black;
+ }
+
+ img {
+    height: 20vw;
+    width: 20vw;
+    object-fit: cover;
+    border-radius: 100vw;
+    -webkit-user-drag: none;
+ }
+
+ #reset:hover {
+    background-color: rgb(150, 60, 235)
+ }
+
+ #sourceText {
+    color: white;
+ }
+
+ .sourceLink {
+    color: rgb(86, 255, 247);
+    font-weight: bold;
  }

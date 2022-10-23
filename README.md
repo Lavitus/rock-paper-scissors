@@ -1,2 +1,5 @@
-# Prompt Rock-Paper-Scissor
-Simple javascript prompt game
+Rock-Paper-Scissor
+Simple game
+
+
+Images by DrawingMyDiaryon Freepik

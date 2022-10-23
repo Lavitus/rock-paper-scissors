@@ -102,9 +102,13 @@ function runRPSGame(playerChoice) {
         #reset {
         background-color: blueviolet;
         color: white;
-        width: 70px;
-        max-width: 13vw;
+        width: 10vw;
+        /* max-width: 13vw; */
+        height: 3vw;
         margin-top: 2vh;
+        font-size: 1vw;
+        border-radius: 1vw;
+        border: 0.4vh solid white;
         }
         `;
         resetGame.textContent = ("Reset Game");
